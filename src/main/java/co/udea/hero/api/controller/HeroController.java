@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostUpdate;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class HeroController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Hero> getHero(@PathVariable String id) {
+    public ResponseEntity<Hero> getHero(@PathVariable Integer id) {
         log.info("REST request buscar heroe");
         return ResponseEntity.ok(heroService.getHero(id));
     }
@@ -41,4 +42,29 @@ public class HeroController {
         log.info("REST request buscar todos los heroes");
         return ResponseEntity.ok(heroService.getHeroes());
     }
+
+    @GetMapping("name/{name}")
+    public ResponseEntity<List<Hero>> searchHeroes(@PathVariable String name) {
+        log.info("REST request buscar heroe por nombre");
+        return ResponseEntity.ok(heroService.searchHeroes(name));
+    }
+
+    @PostMapping()
+    public ResponseEntity<Hero> addHero(@RequestBody Hero hero){
+        return ResponseEntity.ok(heroService.addHero(hero));
+
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteHero(@PathVariable Integer id){
+
+        heroService.deleteHero(id);
+    }
+
+    @PutMapping("update")
+    public void updateHero(@RequestBody Hero hero){
+        heroService.updateHero(hero);
+
+    }
+
 }

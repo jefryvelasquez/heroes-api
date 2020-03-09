@@ -2,10 +2,7 @@ package co.udea.hero.api.model;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Null;
 
 @Entity
@@ -14,7 +11,8 @@ public class Hero {
 
     @Id
     @Column(name = "id")
-    private String id;
+    @GeneratedValue
+    private Integer id;
 
     @NotNull
     @Column(name = "nombre")
@@ -23,16 +21,16 @@ public class Hero {
     public Hero(){
 
     }
-    public Hero(String id, String name) {
+    public Hero(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
