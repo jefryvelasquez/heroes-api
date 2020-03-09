@@ -11,16 +11,16 @@ Las operacioens del api rest fueron mapeadas de la siguiente forma
   getHeroes -->  http://localhost:xxxx/tour-api/heroes/
   
   GET
-  searchHeroes --> http://localhost:xxx/tour-api/heroes/name/{name}
+  searchHeroes --> http://localhost:xxx/tour-api/heroes/buscar/{name}
   
   POST
-  addHero -->  http://localhost:xxx/tour-api/heroes
+  addHero -->  http://localhost:xxx/tour-api/heroes/crear
   
   DELETE
-  deleteHero --> http://localhost:xxx/tour-api/heroes/delete/{id}
+  deleteHero --> http://localhost:xxx/tour-api/heroes/borrar/{id}
   
   PUT
-  updateHero --> http://localhost:xxxx/tour-api/heroes/update
+  updateHero --> http://localhost:xxxx/tour-api/heroes/actualizar
 
 
 
