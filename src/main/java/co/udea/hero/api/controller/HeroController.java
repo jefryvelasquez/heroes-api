@@ -27,6 +27,11 @@ public class HeroController {
     }
 
     @GetMapping("{id}")
+    @ApiOperation(value = "Buscar heroe por id", response = Page.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "El heroe fue encontrado", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
     public ResponseEntity<Hero> getHero(@PathVariable Integer id) {
         log.info("REST request buscar heroe");
         return ResponseEntity.ok(heroService.getHero(id));
@@ -43,26 +48,48 @@ public class HeroController {
         return ResponseEntity.ok(heroService.getHeroes());
     }
 
-    @GetMapping("name/{name}")
+    @GetMapping("buscar/{name}")
+    @ApiOperation(value = "Buscar heroes por nombre que contengan", response = Page.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Los heroes fueron buscados", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
     public ResponseEntity<List<Hero>> searchHeroes(@PathVariable String name) {
         log.info("REST request buscar heroe por nombre");
         return ResponseEntity.ok(heroService.searchHeroes(name));
     }
 
-    @PostMapping()
+    @PostMapping("crear")
+    @ApiOperation(value = "Crear un nuevo heroe", response = Page.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "El heroe fue creado", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
     public ResponseEntity<Hero> addHero(@RequestBody Hero hero){
+        log.info("REST request actualizar heroe");
         return ResponseEntity.ok(heroService.addHero(hero));
 
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("borrar/{id}")
+    @ApiOperation(value = "Borrar un heroe", response = Page.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "EL heroe fue borrado", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
     public void deleteHero(@PathVariable Integer id){
-
+        log.info("REST request borrar heroe");
         heroService.deleteHero(id);
     }
 
-    @PutMapping("update")
+    @PutMapping("actualizar")
+    @ApiOperation(value = "Actualizar un heroe", response = Page.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "El heroe fue actulizado", response = Page.class),
+            @ApiResponse(code = 400, message = "La petición es invalida"),
+            @ApiResponse(code = 500, message = "Error interno al procesar la respuesta")})
     public void updateHero(@RequestBody Hero hero){
+        log.info("REST request actuallizar heroe");
         heroService.updateHero(hero);
 
     }

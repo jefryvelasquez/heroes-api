@@ -41,6 +41,9 @@ public class HeroService {
 
     public List <Hero> searchHeroes(String nombre){
         Optional<List<Hero>> optionalHero = heroRepository.findByNameContaining(nombre);
+        if (!optionalHero.isPresent()){
+            throw new BusinessException(messages.get("exception.data_not_found.hero"));
+        }
         return optionalHero.get();
     }
 
