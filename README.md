@@ -2,6 +2,8 @@
 
 Proyecto integrador 1 2019-02
 
+context-path: /tour-api
+
 Las operacioens del api rest fueron mapeadas de la siguiente forma 
 
   GET
